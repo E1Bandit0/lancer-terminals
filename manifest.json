@@ -1,6 +1,6 @@
 {
   "name": "Lancer Terminals",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "manifest_version": 1,
   "author": "Random",
   "description": "Give tokens pop-out images (terminal screens, posters, documents) that players open by clicking them. Unread ones pulse softly.",
