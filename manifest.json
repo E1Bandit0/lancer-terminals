@@ -1,9 +1,9 @@
 {
   "name": "Lancer Terminals",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "manifest_version": 1,
   "author": "Random",
-  "description": "Give tokens pop-out images (terminal screens, posters, documents) that players open by clicking them. Unread ones pulse softly.",
+  "description": "Pop-out images and green terminal text on tokens and map hotspots. Players click to open; unread ones can pulse.",
   "icon": "/lancer-terminals/icon.svg",
   "background_url": "/lancer-terminals/background.html",
   "action": {
@@ -11,6 +11,6 @@
     "icon": "/lancer-terminals/icon.svg",
     "popover": "/lancer-terminals/panel.html",
     "width": 340,
-    "height": 540
+    "height": 600
   }
 }

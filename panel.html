@@ -6,6 +6,16 @@
 <title>Lancer Terminals</title>
 <link rel="stylesheet" href="base.css?v=b44d43db">
 <link rel="stylesheet" href="ui.css?v=e2839841">
+<style>
+  textarea { width: 100%; min-height: 90px; resize: vertical; padding: 6px 8px; border: 1px solid color-mix(in srgb, var(--a) 30%, transparent); background: var(--scr); color: var(--tx); font: inherit; font-size: 11px; }
+  details summary { cursor: pointer; font-size: 11px; color: color-mix(in srgb, var(--a) 75%, transparent); }
+  .report { font-size: 11px; white-space: pre-line; }
+  .report.bad { color: #ff8a80; }
+  .check { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; }
+  input[type="checkbox"] { accent-color: var(--a); margin: 0; }
+  .term-row .kind { font-size: 9px; letter-spacing: .12em; padding: 1px 5px; border: 1px solid color-mix(in srgb, var(--a) 30%, transparent); color: color-mix(in srgb, var(--a) 70%, transparent); }
+  .term-row .kind.hot { border-color: #6ee08a; color: #6ee08a; }
+</style>
 </head>
 <body>
 <div class="bar"><i class="sqr"></i><strong>Lancer Terminals</strong></div>
@@ -17,21 +27,42 @@
     <label><input type="radio" name="hl" value="steady"> Steady</label>
     <label><input type="radio" name="hl" value="off"> Off</label>
   </div>
-  <p class="hint">Unread terminals pulse; ones you've opened show a faint ring. <em>Steady</em> never animates, which is lighter on older machines.</p>
+  <p class="hint">Unread pop-outs pulse; ones you've opened show a faint ring. <em>Steady</em> never animates, which is lighter on older machines.</p>
   <div class="row"><button type="button" class="btn" id="unread">Mark all unread</button></div>
 </section>
 
 <section id="playerHelp">
-  <p class="hint">Click a highlighted object on the map to see what's on it.</p>
+  <p class="hint">Click highlighted objects, and labels on maps, to see what's there.</p>
 </section>
 
 <section id="gm" hidden>
-  <h2>Pop-outs on this map</h2>
+  <h2>Pop-outs and hotspots on this map</h2>
+  <label class="check"><input type="checkbox" id="outlines"> Show all of them on my screen (only you see this)</label>
   <ul class="list" id="list"></ul>
-  <p class="empty" id="empty">None yet. Right-click a token and choose <em>Add pop-out images</em>.</p>
-  <p class="hint">Players click a pop-out token to open it, so put these tokens on the Prop layer and switch off players' <em>Prop: update</em> and <em>Prop: delete</em> permissions. Locked tokens can't be clicked by players.</p>
+  <p class="empty" id="empty">None yet. Right-click a token for <em>Add pop-out</em>, or draw a shape over a map label and right-click it for <em>Make hotspot</em>.</p>
+  <p class="hint">Players click these to open them, so they sit on the Prop layer: switch off players' <em>Prop: update</em> and <em>Prop: delete</em>. Locked items can't be clicked by players.</p>
 </section>
 
-<script type="module" src="panel.js?v=80765ec6"></script>
+<section id="io" hidden>
+  <h2>Import / export</h2>
+  <div class="row">
+    <button type="button" class="btn" id="export">Export this map</button>
+    <button type="button" class="btn" id="importBtn">Import file…</button>
+    <input type="file" id="file" accept=".json,.md,.markdown,.txt,application/json,text/markdown,text/plain" hidden>
+  </div>
+  <p class="hint">Markdown: one <code>## Name</code> heading per item (matching its name), text underneath, <code>### Title</code> to start another page. It replaces text pages and keeps images. JSON exports bring back everything.</p>
+  <details>
+    <summary>Paste instead</summary>
+    <textarea id="paste" placeholder="Paste Markdown or an exported JSON here"></textarea>
+    <div class="row end"><button type="button" class="btn" id="importPaste">Import pasted</button></div>
+  </details>
+  <div id="exportBox" hidden>
+    <p class="hint">If the download didn't start, copy this and save it as a .json file:</p>
+    <textarea id="exportText" readonly></textarea>
+  </div>
+  <p class="report" id="report" hidden></p>
+</section>
+
+<script type="module" src="panel.js?v=fb9edbe7"></script>
 </body>
 </html>

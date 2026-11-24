@@ -105,3 +105,64 @@ html, body { background: transparent; overflow: hidden; }
   background: linear-gradient(135deg, transparent 0 46%, var(--a) 46% 56%, transparent 56% 68%, var(--a) 68% 78%, transparent 78%);
 }
 .grip:hover, .resizing .grip { opacity: 1; }
+
+/* ---------- text pages: Lancer Comms' Green terminal ---------- */
+.frame.term {
+  --a: #6ee08a;
+  --scr: #0b1a10;
+  --tx: #d2f7da;
+  --ink: #04140a;
+  --line: color-mix(in srgb, #6ee08a 45%, transparent);
+  background:
+    repeating-linear-gradient(0deg, rgba(110, 224, 138, .035) 0 1px, transparent 1px 3px),
+    #07110a;
+}
+.txt {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 4px 4px 8px 2px;
+  color: var(--tx);
+  font-size: clamp(12.5px, 1.25cqw + 8px, 16px);
+  line-height: 1.6;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+  cursor: default;
+}
+.txt.typing { cursor: pointer; }
+.txt h3 {
+  margin: .9em 0 .3em;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.25em;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--a);
+}
+.txt h3:first-child { margin-top: 0; }
+.txt p { margin: 0 0 .7em; }
+.txt ul { margin: 0 0 .7em; padding-left: 1.2em; }
+.txt li::marker { color: var(--a); content: "▸ "; }
+.txt strong { color: #f0fff3; font-weight: 600; }
+.txt em { color: color-mix(in srgb, var(--tx) 80%, var(--a)); }
+.txt code { padding: 0 .3em; background: color-mix(in srgb, var(--a) 14%, transparent); }
+.cursor {
+  display: inline-block;
+  width: .55em;
+  height: 1.05em;
+  margin-left: 1px;
+  vertical-align: -.15em;
+  background: var(--a);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+
+/* window opened to the left of a hotspot: the grip sits on the outer (left) corner */
+.frame.side-left .grip {
+  right: auto;
+  left: 1px;
+  cursor: nesw-resize;
+  background: linear-gradient(225deg, transparent 0 46%, var(--a) 46% 56%, transparent 56% 68%, var(--a) 68% 78%, transparent 78%);
+}

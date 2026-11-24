@@ -3,40 +3,71 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pop-out images</title>
+<title>Pop-out pages</title>
 <link rel="stylesheet" href="base.css?v=b44d43db">
 <link rel="stylesheet" href="ui.css?v=e2839841">
 <style>
-  body { display: flex; flex-direction: column; height: 100vh; }
-  #listWrap { flex: 1; min-height: 0; }
+  body { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+  #main { flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: thin; }
+  .opts { display: grid; grid-template-columns: 74px 1fr; gap: 8px 10px; align-items: center; }
+  .opts > span { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: color-mix(in srgb, var(--a) 65%, transparent); }
+  .text-row { display: flex; flex-direction: column; gap: 6px; padding: 8px; border: 1px solid color-mix(in srgb, #6ee08a 35%, transparent); border-left: 3px solid #6ee08a; }
+  .text-row .top { display: flex; gap: 8px; align-items: center; }
+  .text-row .tag { font-size: 10px; letter-spacing: .12em; color: #6ee08a; flex: none; }
+  textarea {
+    width: 100%; min-height: 110px; resize: vertical; padding: 6px 8px;
+    border: 1px solid color-mix(in srgb, var(--a) 30%, transparent);
+    background: var(--scr); color: var(--tx); font: inherit; font-size: 12px; line-height: 1.5;
+  }
+  .count { font-size: 10px; color: color-mix(in srgb, var(--tx) 50%, transparent); text-align: right; }
+  .count.over { color: #ff8a80; }
+  .warn { color: #ffcf70; font-size: 11px; }
 </style>
 </head>
 <body>
-<div class="bar"><i class="sqr"></i><span>Pop-out images</span><strong id="token"></strong></div>
+<div class="bar"><i class="sqr"></i><span>Pop-out</span><strong id="kind"></strong></div>
 
-<section>
-  <div class="row">
-    <button type="button" class="btn" id="library">Add from library</button>
-    <button type="button" class="btn" id="fromMap">Add selected from map</button>
-  </div>
-  <p class="hint" id="mapHint">Titles come from the image names; edit any of them below. To add from the map, select the images (any layer, they can be hidden from players), then press <em>Add selected from map</em>.</p>
-</section>
+<div id="main">
+  <section>
+    <div class="opts">
+      <span>Name</span>
+      <input type="text" id="name" maxlength="60" aria-label="Name" placeholder="e.g. The Pitt">
+      <span>Highlight</span>
+      <div class="seg" role="radiogroup" aria-label="Highlight">
+        <label><input type="radio" name="highlight" value="pulse"> Pulse</label>
+        <label><input type="radio" name="highlight" value="none"> None</label>
+      </div>
+      <span id="shapeLabel">Ring</span>
+      <div class="seg" role="radiogroup" aria-label="Ring shape" id="shapeSeg">
+        <label><input type="radio" name="shape" value="auto"> Auto</label>
+        <label><input type="radio" name="shape" value="circle"> Circle</label>
+        <label><input type="radio" name="shape" value="box"> Box</label>
+      </div>
+      <span>Opens</span>
+      <div class="seg" role="radiogroup" aria-label="Where the window opens">
+        <label><input type="radio" name="place" value="beside"> Beside it</label>
+        <label><input type="radio" name="place" value="centre"> Centre</label>
+      </div>
+    </div>
+    <p class="hint">The name is how imports find this item, so match it to your note headings.</p>
+  </section>
 
-<section>
-  <h2>Highlight shape</h2>
-  <div class="seg" role="radiogroup" aria-label="Highlight shape">
-    <label><input type="radio" name="shape" value="auto"> Auto</label>
-    <label><input type="radio" name="shape" value="circle"> Circle</label>
-    <label><input type="radio" name="shape" value="box"> Box</label>
-  </div>
-  <p class="hint">Auto uses a circle for square tokens and a box hugging the edges for everything else.</p>
-</section>
+  <section>
+    <div class="row" style="flex-wrap: wrap">
+      <button type="button" class="btn" id="addText">Add text page</button>
+      <button type="button" class="btn" id="library">Add from library</button>
+      <button type="button" class="btn" id="fromMap">Add selected from map</button>
+    </div>
+    <p class="hint" id="mapHint">Text pages show in the green terminal style and type themselves out; image titles come from the image names. To add images from the map, select them first (any layer, they can be hidden from players).</p>
+  </section>
 
-<section id="listWrap" class="scroll">
-  <h2>Pages, in order</h2>
-  <ul class="list" id="list"></ul>
-  <p class="empty" id="empty">No images yet.</p>
-</section>
+  <section>
+    <h2>Pages, in order</h2>
+    <ul class="list" id="list"></ul>
+    <p class="empty" id="empty">No pages yet.</p>
+    <p class="warn" id="sizeWarn" hidden></p>
+  </section>
+</div>
 
 <section>
   <div class="row">
@@ -47,6 +78,6 @@
   </div>
 </section>
 
-<script type="module" src="editor.js?v=cd7198f2"></script>
+<script type="module" src="editor.js?v=1baa7281"></script>
 </body>
 </html>
