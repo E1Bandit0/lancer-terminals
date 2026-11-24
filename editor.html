@@ -22,6 +22,16 @@
   <p class="hint" id="mapHint">Titles come from the image names; edit any of them below. To add from the map, select the images (any layer, they can be hidden from players), then press <em>Add selected from map</em>.</p>
 </section>
 
+<section>
+  <h2>Highlight shape</h2>
+  <div class="seg" role="radiogroup" aria-label="Highlight shape">
+    <label><input type="radio" name="shape" value="auto"> Auto</label>
+    <label><input type="radio" name="shape" value="circle"> Circle</label>
+    <label><input type="radio" name="shape" value="box"> Box</label>
+  </div>
+  <p class="hint">Auto uses a circle for square tokens and a box hugging the edges for everything else.</p>
+</section>
+
 <section id="listWrap" class="scroll">
   <h2>Pages, in order</h2>
   <ul class="list" id="list"></ul>
