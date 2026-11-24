@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pop-out images</title>
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="ui.css">
+<style>
+  body { display: flex; flex-direction: column; height: 100vh; }
+  #listWrap { flex: 1; min-height: 0; }
+</style>
+</head>
+<body>
+<div class="bar"><i class="sqr"></i><span>Pop-out images</span><strong id="token"></strong></div>
+
+<section>
+  <div class="row">
+    <button type="button" class="btn" id="library">Add from library</button>
+    <button type="button" class="btn" id="fromMap">Add selected from map</button>
+  </div>
+  <p class="hint" id="mapHint">Titles come from the image names; edit any of them below. To add from the map, select the images (any layer, they can be hidden from players), then press <em>Add selected from map</em>.</p>
+</section>
+
+<section id="listWrap" class="scroll">
+  <h2>Pages, in order</h2>
+  <ul class="list" id="list"></ul>
+  <p class="empty" id="empty">No images yet.</p>
+</section>
+
+<section>
+  <div class="row">
+    <button type="button" class="btn danger" id="clear">Remove all</button>
+    <span class="spacer"></span>
+    <button type="button" class="btn" id="cancel">Cancel</button>
+    <button type="button" class="btn primary" id="save">Save</button>
+  </div>
+</section>
+
+<script type="module" src="editor.js"></script>
+</body>
+</html>

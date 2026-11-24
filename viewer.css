@@ -1,0 +1,107 @@
+/* The pop-out window: Lancer Comms' handout box in its White colour, with no effects.
+   The popover has no "paper", so nothing outside the frame is drawn. */
+html, body { background: transparent; overflow: hidden; }
+
+.frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 14px 12px;
+  background: #0b0d10;
+  border: 1px solid var(--line);
+  container-type: size;
+}
+
+.micro {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 92px;
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--a) 70%, transparent);
+  white-space: nowrap;
+}
+.micro .sqr { width: 6px; height: 6px; flex: none; background: var(--a); }
+.micro .name { color: var(--a); overflow: hidden; text-overflow: ellipsis; }
+.micro .dots {
+  flex: 1;
+  min-width: 12px;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--line) 0 2px, transparent 2px 6px);
+}
+
+.tools { position: absolute; right: 22px; top: 9px; display: flex; gap: 4px; }
+.tool {
+  width: 22px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--scr) 90%, #000);
+  color: var(--a);
+  font-size: 12px;
+  line-height: 1;
+}
+.tool:hover { background: var(--a); color: var(--ink); }
+
+.pic {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  overflow: hidden;
+}
+.zoomed .pic { cursor: zoom-out; }
+#img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+
+.foot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--a) 75%, transparent);
+}
+.hint { margin: 0 auto; font-size: 10px; opacity: .7; text-align: center; }
+
+/* the bold slanted buttons from Lancer Comms */
+.nav {
+  flex: none;
+  padding: 3px 18px;
+  border: 0;
+  background: color-mix(in srgb, var(--a) 18%, transparent);
+  color: var(--a);
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(15px, 1.6cqw, 20px);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+}
+.nav:hover, .nav.more { background: var(--a); color: var(--ink); }
+.nav:disabled { opacity: .3; cursor: default; background: color-mix(in srgb, var(--a) 10%, transparent); color: var(--a); }
+
+.grip {
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  z-index: 8;
+  width: 22px;
+  height: 22px;
+  touch-action: none;
+  cursor: nwse-resize;
+  opacity: .8;
+  background: linear-gradient(135deg, transparent 0 46%, var(--a) 46% 56%, transparent 56% 68%, var(--a) 68% 78%, transparent 78%);
+}
+.grip:hover, .resizing .grip { opacity: 1; }

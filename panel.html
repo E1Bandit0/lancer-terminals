@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lancer Terminals</title>
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="ui.css">
+</head>
+<body>
+<div class="bar"><i class="sqr"></i><strong>Lancer Terminals</strong></div>
+
+<section>
+  <h2>Highlight on my screen</h2>
+  <div class="seg" role="radiogroup" aria-label="Highlight">
+    <label><input type="radio" name="hl" value="pulse"> Pulse</label>
+    <label><input type="radio" name="hl" value="steady"> Steady</label>
+    <label><input type="radio" name="hl" value="off"> Off</label>
+  </div>
+  <p class="hint">Unread terminals pulse; ones you've opened show a faint ring. <em>Steady</em> never animates, which is lighter on older machines.</p>
+  <div class="row"><button type="button" class="btn" id="unread">Mark all unread</button></div>
+</section>
+
+<section id="playerHelp">
+  <p class="hint">Click a highlighted object on the map to see what's on it.</p>
+</section>
+
+<section id="gm" hidden>
+  <h2>Pop-outs on this map</h2>
+  <ul class="list" id="list"></ul>
+  <p class="empty" id="empty">None yet. Right-click a token and choose <em>Add pop-out images</em>.</p>
+  <p class="hint">Players click a pop-out token to open it, so put these tokens on the Prop layer and switch off players' <em>Prop: update</em> and <em>Prop: delete</em> permissions. Locked tokens can't be clicked by players.</p>
+</section>
+
+<script type="module" src="panel.js"></script>
+</body>
+</html>

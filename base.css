@@ -1,0 +1,27 @@
+/* Fonts and colours shared with Lancer Comms (its White signal colour). */
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-style: normal; font-display: swap; src: url("fonts/ibm-plex-mono-400.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 600; font-style: normal; font-display: swap; src: url("fonts/ibm-plex-mono-600.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-weight: 700; font-style: italic; font-display: swap; src: url("fonts/barlow-condensed-700-italic.woff2") format("woff2"); }
+
+:root {
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  --a: #e8edf2;      /* accent */
+  --scr: #111418;    /* screen */
+  --tx: #f2f5f8;     /* text */
+  --ink: #05080a;
+  --line: color-mix(in srgb, var(--a) 45%, transparent);
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--tx);
+  -webkit-font-smoothing: antialiased;
+}
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--a); outline-offset: 2px; }
+[hidden] { display: none !important; }

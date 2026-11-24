@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terminal</title>
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="viewer.css">
+</head>
+<body>
+<div class="frame" id="frame">
+  <div class="micro"><i class="sqr"></i><span class="name" id="title"></span><span class="dots"></span><span class="page" id="page"></span></div>
+  <div class="tools">
+    <button class="tool" data-step="-1" type="button" title="Smaller" aria-label="Make the window smaller">&minus;</button>
+    <button class="tool" data-step="1" type="button" title="Bigger" aria-label="Make the window bigger">+</button>
+    <button class="tool" id="close" type="button" title="Close (Esc)" aria-label="Close">&#x2715;</button>
+  </div>
+  <button class="pic" id="pic" type="button" title="Click to enlarge" aria-label="Enlarge image">
+    <img id="img" alt="" draggable="false">
+  </button>
+  <div class="foot">
+    <button class="nav" id="back" type="button">&#9666; Back</button>
+    <span class="hint" id="hint">Click the image to enlarge</span>
+    <button class="nav" id="next" type="button">Next &#9656;</button>
+  </div>
+  <div class="grip" id="grip" title="Drag to resize. Double-click to reset."></div>
+</div>
+<script type="module" src="viewer.js"></script>
+</body>
+</html>
